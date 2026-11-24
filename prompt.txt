@@ -1,0 +1,9 @@
+Watch for NEW make.fun bounties, tell Rija in the main chat when one appears, and — per Rija's standing instruction 2026-11-15 ~20:14 +08 ("Update trus kalo ada bounty baru, bila perlu langsung eksekusi") — EXECUTE free ones directly. Reporting only is no longer the rule.
+
+Every run:
+1. Fetch GET https://make.fun/api/competitions?limit=200 (no key needed) and parse the JSON "items" list.
+2. Read the seen list at ~/workspace/goals/make-fun-bounty-entries-all-nine-projects/hidden_files/makefun-seen-slugs.txt (one slug per line).
+3. A bounty is NEW when its slug is not in the seen list AND status is "open" AND its deadline is still in the future.
+4. If there are new bounties, report them to Rija in the main chat, one line each. Then append the new slugs to the seen list file (keep it sorted, one per line).
+5. EXECUTE each new bounty directly, unless it is blocked: FREE only (entry_fee null) — build + submit it; if entry_fee is NOT null, do NOT pay it and do NOT build it — report the bounty + the fee to Rija and wait for her call. If the bounty needs something only Rija can do, do NOT execute — report the bounty + the exact blocker.
+6. If nothing new, stay silent — do not message Rija.
